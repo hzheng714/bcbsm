@@ -38,7 +38,7 @@
                 [disabled]="!dateForm.valid">Submit</ion-button>
   </form>
 
-  <div *ngIf="showResults" class="app-home__results-list ion-padding-end ion-margin-top" role="region"
+  <div *ngIf="showResults" class="app-home__results-list ion-padding-end ion-margin-top"
        aria-label="Date calculation results">
     <ion-list>
       <ion-item *ngFor="let result of dateResults" class="app-home__result-item">
