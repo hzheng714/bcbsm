@@ -1,20 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      {{title}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">{{title}}</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <form [formGroup]="dateForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked" aria-label="Select a date from future">
+        Select a date from future
+      </ion-label>
+      <ion-input placeholder="Select Date" readonly aria-label="Date input field"
+                 [value]="displayDate"
+                 (click)="isDatePickerOpen = true"></ion-input>
+
+      <ion-modal [isOpen]="isDatePickerOpen" (didDismiss)="isDatePickerOpen = false">
+        <ng-template>
+          <ion-datetime presentation="date" aria-label="Date picker"
+            [min]="minDate"
+            [max]="maxDate"
+            [formControl]="dateForm.controls.selectedDate"
+            [showDefaultButtons]="true"
+            (ionChange)="dateChanged()"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+
+    <ion-button type="submit" expand="block" class="ion-margin-top" aria-label="Submit button"
+                [disabled]="!dateForm.valid">Submit</ion-button>
+  </form>
+
+  <div *ngIf="showResults" class="app-home__results-list ion-padding-end ion-margin-top" role="region"
+       aria-label="Date calculation results">
+    <ion-list>
+      <ion-item *ngFor="let result of dateResults" class="app-home__result-item">
+        <ion-label>
+          <span class="app-home__result-label">{{ result.label }}:</span>
+          <span class="app-home__result-value">{{ result.value }}</span>
+        </ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
