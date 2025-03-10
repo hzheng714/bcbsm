@@ -3,7 +3,19 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { addDays, addYears, format, subDays, subYears } from 'date-fns';
 import { MMMM_d_yyyy } from "../constants";
 import { CommonModule } from "@angular/common";
-import { IonicModule } from "@ionic/angular";
+import { 
+  IonHeader, 
+  IonToolbar, 
+  IonTitle, 
+  IonContent, 
+  IonItem, 
+  IonLabel, 
+  IonInput, 
+  IonModal, 
+  IonDatetime, 
+  IonButton,
+  IonList
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +24,17 @@ import { IonicModule } from "@ionic/angular";
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    IonicModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonItem,
+    IonLabel,
+    IonInput,
+    IonModal,
+    IonDatetime,
+    IonButton,
+    IonList
   ],
 })
 export class HomePage {
